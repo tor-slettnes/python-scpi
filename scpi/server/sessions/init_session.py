@@ -1,5 +1,5 @@
 #===============================================================================
-## @file init_session
+## @file init_session.py
 ## @brief SCPI session for running startup/shutdown modules
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

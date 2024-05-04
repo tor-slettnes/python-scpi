@@ -1,5 +1,5 @@
 #===============================================================================
-## @file scpiTop.py
+## @file top.py
 ## @brief Implementation of a top level branch (trunk).
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

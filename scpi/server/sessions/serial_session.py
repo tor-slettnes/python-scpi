@@ -1,5 +1,5 @@
 #===============================================================================
-## @file scpiSession.py
+## @file serial_session.py
 ## @brief Container for external/internal SCPI client sessions
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

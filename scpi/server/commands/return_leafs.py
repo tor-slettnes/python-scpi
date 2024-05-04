@@ -1,5 +1,5 @@
 #===============================================================================
-## @file scpiReturnLeaf.py
+## @file return_leafs.py
 ## @brief SCPI commands that break out of the current command scope
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

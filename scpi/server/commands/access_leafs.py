@@ -1,5 +1,5 @@
 #===============================================================================
-## @file scpiSessionBranch.py
+## @file access_leafs.py
 ## @brief Commands to manage client sessions
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #===============================================================================
-## @file scpiServer.py
+## @file load.py
 ## @brief Instrument Command Server & Request Handler
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

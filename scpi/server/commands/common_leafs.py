@@ -1,5 +1,5 @@
 #===============================================================================
-## @file scpiIdentificationLeaf.py
+## @file common_leafs.py
 ## @brief Commands related to variables
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

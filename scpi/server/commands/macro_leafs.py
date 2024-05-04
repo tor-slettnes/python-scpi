@@ -1,5 +1,5 @@
 #===============================================================================
-## @file scpiMacroLeafs.py
+## @file macro_leafs.pyf
 ## @brief Commands to support macro creation & query
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================

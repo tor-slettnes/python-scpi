@@ -7,14 +7,14 @@
 
 ## Modules relative to install path
 from .base_server import server_types
-from .network_server import NetworkRequestHandler, NetworkServer
+from .socket_server import SocketRequestHandler, SocketServer
 from ..sessions.telnet_session import TelnetSession
 from ...tools.telnethandler import TelnetHandler
 
 ## Standard Python modules
 from socketserver import StreamRequestHandler
 
-class TelnetRequestHandler (NetworkRequestHandler):
+class TelnetRequestHandler (SocketRequestHandler):
     """
     Request handler for incoming telnet clients.
     """
@@ -34,12 +34,12 @@ class TelnetRequestHandler (NetworkRequestHandler):
                                       id_prefix=self.prefix)
 
 
-class TelnetServer (NetworkServer):
+class TelnetServer (SocketServer):
     RequestHandler = TelnetRequestHandler
     default_port   = 2323
 
     def __init__ (self, *args, **kwargs):
-        NetworkServer.__init__(self, *args, **kwargs)
+        SocketServer.__init__(self, *args, **kwargs)
 
 
 server_types['telnet'] = TelnetServer

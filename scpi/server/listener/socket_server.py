@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #===============================================================================
-## @file network_server.py
+## @file socket_server.py
 ## @brief Instrument Command Server & Request Handler - Network/TCP server
 ## @author Tor Slettnes <tor@slett.net>
 #===============================================================================
@@ -16,7 +16,7 @@ from socketserver  import TCPServer, StreamRequestHandler
 from threading import Thread
 
 
-class NetworkRequestHandler (BaseRequestHandler, StreamRequestHandler):
+class SocketRequestHandler (BaseRequestHandler, StreamRequestHandler):
     """
     Request handler for incoming client connections.
     """
@@ -34,8 +34,8 @@ class NetworkRequestHandler (BaseRequestHandler, StreamRequestHandler):
                                       description=description,
                                       id_prefix=self.prefix)
 
-class NetworkServer (TCPServer, BaseServer):
-    RequestHandler      = NetworkRequestHandler
+class SocketServer (TCPServer, BaseServer):
+    RequestHandler      = SocketRequestHandler
     default_interface   = ''
     default_port        = 7000
     daemon_threads      = True
@@ -73,4 +73,4 @@ class NetworkServer (TCPServer, BaseServer):
                    daemon=True)
         t.start()
 
-server_types['plain'] = server_types[None] = NetworkServer
+server_types['plain'] = server_types[None] = SocketServer
