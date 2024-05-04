@@ -1,0 +1,6 @@
+#===============================================================================
+## @file start.scpi
+## @brief Server initialization - loaded after listeners have been added
+## @author Tor Slettnes <tslettnes@picarro.com>
+#===============================================================================
+

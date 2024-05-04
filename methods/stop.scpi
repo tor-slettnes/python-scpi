@@ -1,0 +1,6 @@
+#===============================================================================
+## @file stop.scpi
+## @brief Server deinitialization - loaded when server is shut down
+## @author Tor Slettnes <tslettnes@picarro.com>
+#===============================================================================
+
