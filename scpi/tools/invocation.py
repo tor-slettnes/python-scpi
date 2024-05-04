@@ -2,7 +2,7 @@
 #===============================================================================
 ## @file safe_invoke.py
 ## @brief Process related utilities
-## @author Tor Slettnes <tslettnes@picarro.com>
+## @author Tor Slettnes <tor@slett.net>
 #===============================================================================
 
 from typing import Callable, Sequence, Mapping, Optional, Any

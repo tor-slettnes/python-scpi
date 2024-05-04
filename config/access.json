@@ -1,0 +1,65 @@
+// -*- javascript -*-
+//==============================================================================
+/// @file access.json
+/// @brief SCPI Server authentication secrets and access control.
+//==============================================================================
+
+/// Each instrument controller command is restricted according to one
+/// of four different access levels.  Before executing a given command,
+/// the client must obtain the corresponding access level or higher.
+/// These levels are:
+///
+///     GUEST         - commands that can be executed by anyone
+///                     (e.g. people connecting via a telnet client over
+///                     the internet).
+///
+///     OBSERVER      - commands that can be used to obtain the
+///                     status of the instrument, without interfering
+///                     with its operation.
+///
+///     CONTROLLER    - commands that can be used to control the 
+///                     operation of the instrument (e.g. to start
+///                     or stop a run).
+///
+///     ADMINISTRATOR - commands that can be used to modify instrument
+///                     settings, e.g. network settings, time/timezone..
+///
+///     FULL          - commands that can be used to modify instrument
+///                     behaviour; e.g. to redefine macros that are integral
+///                     and published parts of the instrument framework.
+
+{
+    //=========================================================================
+    // Default access level that is granted to a client once it connects
+    // to the server over a given network interface (specified by either its
+    // name (e.g. "eth0"), or its IP address ON THE SERVER/INSTRUMENT SIDE(!), 
+    // or the word "default" for interfaces not otherwise listed). 
+
+    "defaultAccess": {
+        "127.0.0.1" : "CONTROLLER",
+        "serial"    : "CONTROLLER",
+        "default"   : "GUEST"
+    },
+
+    //=========================================================================
+    // Access limit that apply to a client upon initial connection.
+    // To go beyond this level, the client needs to authenticate.
+
+    "accessLimits": {
+        "127.0.0.1" : "ADMINISTRATOR",
+        "serial"    : "ADMINISTRATOR",
+        "default"   : "OBSERVER"
+    },
+
+    //=========================================================================
+    // Access limits that apply to a client once authenticated, using 
+    // using one of the secrets above.  The lesser of the authenticated
+    // level and this level prevails.
+
+    "authLimits": {
+        "127.0.0.1" : "ADMINISTRATOR",
+        "serial"    : "ADMINISTRATOR",
+        "default"   : "ADMINISTRATOR"
+    }
+}
+

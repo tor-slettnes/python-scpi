@@ -1,0 +1,14 @@
+// -*- javascript -*-
+//==============================================================================
+/// @file version.json
+/// @brief Software version
+/// @author Tor Slettnes <tor@slett.net>
+//==============================================================================
+
+{
+    "server":{
+        "product": "DummyProduct",
+        "description": "SCPI Server",
+        "version": "0.0.2"
+    }
+}

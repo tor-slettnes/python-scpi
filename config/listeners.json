@@ -1,0 +1,46 @@
+// -*- javascript -*-
+//==============================================================================
+/// @file listeners.json
+/// @brief Listeners instantiated by SCPI server at startup
+/// @author Tor Slettnes <tor@slett.net>
+//==============================================================================
+
+{
+    "internal": {
+        "type": "plain",
+        "address": "127.0.0.1",
+        "port": 7000,
+        "autostart": true
+    },
+
+    "telnet": {
+        "type": "telnet",
+        "address": "127.0.0.1",
+        "port": 2323,
+        "autostart": true
+    },
+
+    // "ssl": {
+    //     "type": "ssl",
+    //     "port": 7443,
+    //     "certfile": "cert.pem",
+    //     "keyfile": "key.pem",
+    //     "autostart": false
+    // },
+
+    "serial": {
+        "type": "serial",
+        "port": "/dev/ttyUSB0",
+        "baudrate": 9600
+        // "bytesize": 8,
+        // "parity": "N",
+        // "stopbits": 1,
+        // "timeout": None,
+        // "xonxoff": false,
+        // "rtscts": false,
+        // "write_timeout": None,
+        // "dsrdtr": false,
+        // "inter_byte_timeout": None,
+        // "exclusive": None,
+    }
+}

@@ -5,12 +5,11 @@
 #===============================================================================
 
 ## Modules relative to install path
-from .parameter           import Missing
-from ..exceptions         import CommandError
-from ..sessions.symbols   import OBSERVER, CONTROLLER, SYNC, ASYNC
+from .parameter import Missing
+from ..exceptions import CommandError
+from ..sessions.symbols import OBSERVER, CONTROLLER, SYNC, ASYNC
 from ...tools.publication import publish, info, TRACE, DEBUG, INFO, NOTICE, WARNING, ERROR
-from ...tools.config      import Config
-from ...tools.parser      import QUOTE_ATTRIBUTES
+from ...tools.parser import QUOTE_ATTRIBUTES
 
 ## Standard Python modules
 import re, weakref

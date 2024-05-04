@@ -7,7 +7,7 @@
 ### Modules relative to install path
 from .listener.load import runServer, getStartupOption, setStartupOptions
 from .sessions.module_session import setModulePath
-from ..tools.config import Config, setConfigPath
+from ..tools.settingsstore import SettingsStore
 from ..client import SocketClient
 
 ### Standard Python modules
@@ -208,7 +208,7 @@ def initialize (baseFolders=(".",), configpath=None, modulepath=None, **defaults
     configpath = initConfigPath(args.configpath)
     modulepath = initModulePath(args.modulepath)
 
-    setConfigPath(configpath)
+    SettingsStore.search_path = configpath
     setModulePath(modulepath)
     setStartupOptions(args)
 
@@ -251,9 +251,7 @@ def serverStatus (host='127.0.0.1', port=7000):
 
 
 def getListeners() -> dict:
-    listenerConfig = Config("listeners.ini", literal=True)
-    listeners = dict([(section, listenerConfig[section])
-                      for section in listenerConfig.sections()])
+    listeners = SettingsStore("listeners.json")
 
     if addr := getStartupOption('bindplain'):
         host, port = interface(addr)
@@ -272,9 +270,8 @@ def getListeners() -> dict:
     return listeners
 
 def printVersionInfo (option):
-    from ..tools.config import Config
-    c = Config("version.ini")
-    string = c.get("server", option, "-")
+    c = SettingsStore("version.json")
+    string = c.get("server", {}).get(option, "-")
     print(string)
 
 def run(top=None, **options):

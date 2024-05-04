@@ -14,7 +14,7 @@ from ..exceptions import scpiException, \
     Exc, Error, RunError, CommandError, InternalError, ExternalError, \
     SessionControl, NextControl, NextReply, NextCommand, Break, ReturnValue, ReturnCall
 
-from ...tools.config import Config, ConfigError
+from ...tools.settingsstore import SettingsStore
 from ...tools.dataproxy import DataProxy
 from ...tools.publication import addTopic, deleteTopic, publish, info, \
     TRACE, DEBUG, INFO, NOTICE, WARNING
@@ -116,12 +116,10 @@ class BaseSession (CommandParser):
             self.setRole(None)
 
             if self.accessinfo is None:
-                BaseSession.accessconfig = Config('access.ini')
-                BaseSession.accessinfo   = self.importConfig(self.accessconfig)
+                BaseSession.accessinfo   = SettingsStore('access.json')
 
             if self.authdata is None:
-                BaseSession.authconfig   = Config('authentication.ini')
-                BaseSession.authdata     = self.importConfig(self.authconfig)
+                BaseSession.authdata     = SettingsStore('authentication.json')
 
             self.addInstance()
 
@@ -151,13 +149,6 @@ class BaseSession (CommandParser):
         if cls and not isinstance(session, cls):
             raise self.IncorrectSessionType(expected=cls.__name__, found=type(session).__name__)
         return session
-
-    def importConfig (self, config):
-        data = {}
-        for section in config.sections():
-            data[section] = config[section]
-        return data
-
 
 
     #===========================================================================

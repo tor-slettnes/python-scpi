@@ -11,7 +11,7 @@ from ..exceptions import Error
 from ..sessions.init_session import InitSession
 from ...tools.publication import info, warning, initlogging, setDefaultLogLevel
 from ...tools.invocation import safe_invoke
-from ...tools.config import Config
+from ...tools.settingsstore import SettingsStore
 
 ## Standard Python modules
 import os, sys, signal, time, select, threading
@@ -22,7 +22,6 @@ _options       = None
 _trunk         = None
 _exitmodules   = []
 _listeners     = {}
-listenerConfig = Config("listeners.ini", literal=True)
 
 def runModule (scope, path):
     try:
