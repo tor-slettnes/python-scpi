@@ -7,6 +7,7 @@
 
 ### Modules relative to install folder
 from .base_client import BaseClient
+from .errors import SCPIDisconnected
 
 ### Standard Python modules
 import threading
@@ -114,8 +115,11 @@ class SocketClient (BaseClient):
         return self.socket.fileno
 
     def writeline(self, text):
-        data = text.encode() if isinstance(text, str) else text
-        self.socket.send(data + b'\r\n')
+        if self.socket:
+            data = text.encode() if isinstance(text, str) else text
+            self.socket.send(data + b'\r\n')
+        else:
+            raise SCPIDisconnected("Not connected to SCPI server")
 
     def send_command(self, command):
         '''Send a command to the SCPI Server'''

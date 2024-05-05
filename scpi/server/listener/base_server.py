@@ -35,7 +35,7 @@ class BaseServer (object):
         '''Return True if this server is currently available'''
         return True
 
-    def fileno(self):
+    def fileno(self) -> int:
         raise NotImplementedError()
 
 

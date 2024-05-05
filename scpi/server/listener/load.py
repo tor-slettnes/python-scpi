@@ -9,7 +9,7 @@
 from .base_server import BaseRequestHandler, server_types
 from ..exceptions import Error
 from ..sessions.init_session import InitSession
-from ...tools.publication import info, warning, initlogging, setDefaultLogLevel
+from ...tools.publication import info, warning, error, initlogging, setDefaultLogLevel
 from ...tools.invocation import safe_invoke
 from ...tools.settingsstore import SettingsStore
 
@@ -124,13 +124,13 @@ def addListener (name, server_type, attributes, default=False):
     try:
         listener = _listeners[name] = server_type(**attributes)
     except (TypeError, EnvironmentError, ImportError) as e:
-        fatal('Could not create listener %r using %r: [%s] %s'%
+        error('Could not create listener %r using %r: [%s] %s'%
               (name, server_type.__name__, type(e).__name__, e))
+    else:
+        if default:
+            _listeners[None] = listener
+        return listener
 
-
-    if default:
-        _listeners[None] = listener
-    return listener
 
 def removeListener (name):
     if _listeners.pop(name, None) == _listeners.get(None):
@@ -216,7 +216,7 @@ def serve ():
             try:
                 candidates = [listener
                               for listener in _listeners.values()
-                              if listener.fileno() is not None]
+                              if listener.is_available()]
 
                 (inlist, _, _) = select.select(list(candidates), [], [], 2.0)
 

@@ -94,13 +94,8 @@ class BaseClient (CommandParser):
     def defaultLogger(self, level, message):
         logging.log(LOGGING_LEVELS[level], message)
 
-
     def writeline(self, text):
-        if self.outstream:
-            data = text.encode() if isinstance(text, str) else text
-            self.outstream.write(data + b'\r\n')
-        else:
-            raise SCPIDisconnected('Not connected')
+        raise NotImplementedError()
 
 
 

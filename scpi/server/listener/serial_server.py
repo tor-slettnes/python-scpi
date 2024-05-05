@@ -33,7 +33,7 @@ class SerialServer (BaseServer):
         self.active = False
 
     def is_available(self):
-        return exists(self.serial.port()) and not self.handler
+        return exists(self.serial.port) and not self.active
 
     def fileno(self):
         return self.serial.fileno()
@@ -42,10 +42,10 @@ class SerialServer (BaseServer):
         t = Thread(target=self.handle_request_thread,
                    name="SerialRequestHandler",
                    daemon=True)
+        self.active = True
         t.start()
 
     def handle_request_thread(self):
-        self.active = True
         handler = SerialRequestHandler(self.serial)
         handler.handle()
         self.active = False

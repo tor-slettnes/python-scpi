@@ -34,7 +34,6 @@ class SerialClient (BaseClient):
             if threaded:
                 self.startReceiveThread()
 
-
     def close(self):
         if self.serial:
             self.serial.close()
@@ -44,3 +43,12 @@ class SerialClient (BaseClient):
 
     def fileno(self):
         return self.serial.fileno() if self.serial else None
+
+    def writeline(self, text):
+        if self.outstream:
+            data = (text.encode() if isinstance(text, str) else text) + b'\r\n'
+            print('Sending to serial port: %r'%(data,))
+            self.outstream.write(data)
+        else:
+            raise SCPIDisconnected('Not connected')
+
